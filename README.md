@@ -21,3 +21,43 @@ By using APIs, it dynamically retrieves students data. It is capable of adding t
 
 ![search](https://user-images.githubusercontent.com/65743649/128462158-1a110393-c166-4c51-8840-4a97692d1ccf.JPG)
 
+```js
+  const [data, setData] = useState([]);
+  const [students, setStudents] = useState([]);
+  const [tags, setTags] = useState([]);
+  
+  const searchByName = (name) => {
+
+    // Filter original data to constantly set students array. 
+    let selectedStudent = data.filter(student => {
+      
+      if(name === ''){
+        return student  
+      } else if (student.firstName.toLowerCase().includes(name.toLowerCase()) === true){
+        return student
+      } else if (student.lastName.toLowerCase().includes(name.toLowerCase()) === true){
+        return student
+      }
+
+      return null; 
+    });
+
+    setStudents(selectedStudent);  
+  }
+
+  const searchByTag = (tag) => {
+   
+    let selectedStudent = data.filter(student => {
+      if(tag === ''){
+        return student;
+      } else if (student.tags.includes(tag.toLowerCase())){
+        return student;
+      }
+      return null;
+    })
+
+    return setStudents(selectedStudent);
+  }
+```
+
+
